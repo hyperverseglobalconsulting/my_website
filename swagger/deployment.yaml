@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swagger-ui
+  labels:
+    app: swagger-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: swagger-ui
+  template:
+    metadata:
+      labels:
+        app: swagger-ui
+    spec:
+      containers:
+      - name: swagger-ui
+        image: swaggerapi/swagger-ui
+        ports:
+        - containerPort: 80
+        env:
+        - name: SWAGGER_JSON
+          value: "/etc/swagger/swagger.json"
+        volumeMounts:
+        - name: swagger-volume
+          mountPath: /etc/swagger
+      volumes:
+      - name: swagger-volume
+        configMap:
+          name: swagger-config
+

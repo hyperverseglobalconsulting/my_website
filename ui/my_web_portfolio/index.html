@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Portfolio</title>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    </head>
+<body>
+    <h1>My Portfolio</h1>
+
+    <h2>Introduction/About Me</h2>
+    <ul>
+    {% for item in data["Introduction/About Me"] %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>Contact Information</h2>
+    <ul>
+    {% for item in data["Contact Information"] %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>Work/Project Showcase</h2>
+    <h3>Featured Projects</h3>
+    <ul>
+    {% for item in data["Work/Project Showcase"]["Featured Projects"] %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+    <h3>Other Projects</h3>
+    <ul>
+    {% for item in data["Work/Project Showcase"]["Other Projects"] %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>Testimonials & Recommendations</h2>
+    <ul>
+    {% for item in data["Testimonials & Recommendations"] %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>Skills & Technologies</h2>
+    <ul>
+    {% for item in data["Skills & Technologies"] %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>Awards & Certifications</h2>
+    <ul>
+    {% for item in data["Awards & Certifications"] %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
+

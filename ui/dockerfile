@@ -1,0 +1,15 @@
+FROM 093487613626.dkr.ecr.us-east-2.amazonaws.com/python:3.11-slim
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y sqlite3 && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 80
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "${UI_DEPLOYMENT}"
+  namespace: django
+  labels:
+    app.kubernetes.io/name: "${UI_POD}"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: "${UI_POD}"
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: "${UI_POD}"
+    spec:
+      serviceAccountName: django-sa
+      containers:
+      - name: ui
+        image: ${UI_IMAGE}
+        ports:
+        - containerPort: 80
+          name: http-web-svc
